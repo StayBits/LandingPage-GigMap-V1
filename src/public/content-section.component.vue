@@ -78,7 +78,7 @@
       <div class="concert-card">
         <img :src="concerts[5].image" :alt="concerts[5].name">
         <div>
-          <strong>{{ concerts[4].name }}</strong><br>
+          <strong>{{ concerts[5].name }}</strong><br>
           {{ concerts[5].date }}, {{ concerts[5].venue }}
         </div>
       </div>
