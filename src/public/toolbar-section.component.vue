@@ -22,9 +22,16 @@
     <language-switcher />
 
 
-    <a href="" class="btn-appweb">
-      {{ $t("ingresar") }}
-    </a>
+  <a
+  href="https://github.com/StayBits/GigMap-mobile/releases/download/v1.0.0/app-debug.apk"
+  class="btn-appweb"
+  download
+  target="_blank"
+  rel="noopener"
+>
+  {{ $t('ingresar') }}
+</a>
+
   </header>
 
   <router-view />
