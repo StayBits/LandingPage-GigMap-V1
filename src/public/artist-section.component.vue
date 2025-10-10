@@ -76,6 +76,7 @@ main {
   gap: 1rem;
   margin-top: 2rem;
 }
+/* Card */
 
 .card {
   background-color: #fff;
@@ -116,6 +117,7 @@ nav a.active {
   background-color: #8C1C25;
   color: #fff;
 }
+/* Link */
 
 .link {
   margin-top: 2rem;
