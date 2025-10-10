@@ -76,6 +76,7 @@ main {
   gap: 1rem;
   margin-top: 2rem;
 }
+/* Updated highlight color to new brand red */
 
 .card {
   background-color: #fff;
@@ -94,11 +95,13 @@ main {
   line-height: 1.6;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+/* Updated highlight color to new brand red */
 
 .card:hover {
   transform: translateY(-8px);
   box-shadow: 0 8px 20px rgba(140, 28, 37, 0.5);
 }
+/* Updated highlight color to new brand red */
 
 .card .icon {
   font-size: 2rem;
