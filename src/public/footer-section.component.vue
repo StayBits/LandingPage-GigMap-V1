@@ -37,7 +37,7 @@
             <li><a href="#">{{ $t('terminos') }}</a></li>
             <li><a href="#">{{ $t('cookies') }}</a></li>
           </ul>
-        </div>
+        </div> 
       </div>
 
       <div class="footer-bottom">
