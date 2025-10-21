@@ -1,60 +1,57 @@
 <template>
   <div class="download-section">
     <div class="download-container">
-        <div class="download-header">
-          <h1>{{ $t('descargarApp') }}</h1>
-          <p>{{ $t('eligePlataforma') }}</p>
-        </div>
+      <div class="download-header">
+        <h1>{{ $t('descargarApp') }}</h1>
+        <p>{{ $t('eligePlataforma') }}</p>
+      </div>
 
-        <!-- Decorative circles section divider -->
-        <div class="section-divider">
-          <div class="circle circle-1"></div>
-          <div class="circle circle-2"></div>
-          <div class="circle circle-3"></div>
-          <div class="circle circle-4"></div>
-        </div>
+      <div class="section-divider">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-3"></div>
+        <div class="circle circle-4"></div>
+      </div>
 
-        <div class="platform-options">
-          <div class="platform-card apple-card" @click="downloadApple">
-            <div class="platform-image">
-              <img src="/LandingPage-GigMap-V1/apple-logo.png" alt="iOS App" />
-            </div>
-            <div class="platform-info">
-              <h2>iOS</h2>
-              <p>{{ $t('proximamente') }}</p>
-            </div>
+      <div class="platform-options">
+        <div class="platform-card apple-card" @click="downloadApple">
+          <div class="platform-image">
+            <!-- 👇 en /public -->
+            <img src="/apple-logo.png" alt="iOS App" />
           </div>
-
-          <div class="platform-card android-card" @click="downloadAndroid">
-            <div class="platform-image">
-              <img src="/LandingPage-GigMap-V1/android-logo.png" alt="Android App" />
-            </div>
-            <div class="platform-info">
-              <h2>Android</h2>
-              <p>{{ $t('descargarAhora') }}</p>
-            </div>
+          <div class="platform-info">
+            <h2>iOS</h2>
+            <p>{{ $t('proximamente') }}</p>
           </div>
         </div>
 
-        <!-- Decorative circles section divider -->
-        <div class="section-divider">
-          <div class="circle circle-1"></div>
-          <div class="circle circle-2"></div>
-          <div class="circle circle-3"></div>
-          <div class="circle circle-4"></div>
+        <div class="platform-card android-card" @click="downloadAndroid">
+          <div class="platform-image">
+            <!-- 👇 en /public -->
+            <img src="/android-logo.png" alt="Android App" />
+          </div>
+          <div class="platform-info">
+            <h2>Android</h2>
+            <p>{{ $t('descargarAhora') }}</p>
+          </div>
         </div>
       </div>
+
+      <div class="section-divider">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-3"></div>
+        <div class="circle circle-4"></div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: "DownloadPage",
-  components: {},
   methods: {
-    downloadApple() {
-      alert('Próximamente disponible para iOS');
-    },
+    downloadApple() { alert('Próximamente disponible para iOS'); },
     downloadAndroid() {
       const link = document.createElement('a');
       link.href = 'https://github.com/StayBits/GigMap-mobile/releases/download/v1.0.0/app-debug.apk';
@@ -68,6 +65,7 @@ export default {
   }
 }
 </script>
+
 
 <style scoped>
 .download-section {
