@@ -63,5 +63,12 @@
   "abouttheteam": "About-The-Team Video",
   "abouttheproduct": "About-The-Product Video",
   "abouttheteamdesc": "StayBits is a startup that unites music and technology to bring fans and artists together.",
-  "abouttheproductdesc": "GigMap, our interactive app, displays a real-time map of concerts and tours, allowing you to discover events, follow artists, and share experiences."
+  "abouttheproductdesc": "GigMap, our interactive app, displays a real-time map of concerts and tours, allowing you to discover events, follow artists, and share experiences.",
+  "demo": "Demo",
+  "demoTitle": "App Demo",
+  "demoSubtitle": "Discover all GigMap features through our interactive mockups",
+  "descargarApp": "Download App",
+  "eligePlataforma": "Choose your operating system",
+  "proximamente": "Coming Soon",
+  "descargarAhora": "Download Now"
 }

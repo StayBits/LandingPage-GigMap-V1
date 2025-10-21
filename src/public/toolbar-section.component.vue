@@ -22,15 +22,12 @@
     <language-switcher />
 
 
-  <a
-  href="https://github.com/StayBits/GigMap-mobile/releases/download/v1.0.0/app-debug.apk"
+  <router-link
+  to="/download"
   class="btn-appweb"
-  download
-  target="_blank"
-  rel="noopener"
 >
   {{ $t('ingresar') }}
-</a>
+</router-link>
 
   </header>
 
@@ -48,6 +45,7 @@ export default {
       items: [
         { label: "inicio", to: "/home" },
         { label: "fans", to: "/fans" },
+        { label: "demo", to: "/demo" },
         { label: "artistas", to: "/artists" }
       ]
     };
