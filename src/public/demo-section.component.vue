@@ -1,203 +1,107 @@
 <template>
   <div class="demo-section">
     <div class="demo-container">
-        <div class="demo-header">
-          <h1>{{ $t('demoTitle') }}</h1>
-          <p>{{ $t('demoSubtitle') }}</p>
-        </div>
+      <div class="demo-header">
+        <h1>{{ $t('demoTitle') }}</h1>
+        <p>{{ $t('demoSubtitle') }}</p>
+      </div>
 
-        <!-- Decorative circles section divider -->
-        <div class="section-divider">
-          <div class="circle circle-1"></div>
-          <div class="circle circle-2"></div>
-          <div class="circle circle-3"></div>
-          <div class="circle circle-4"></div>
-        </div>
+      <div class="section-divider">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-3"></div>
+        <div class="circle circle-4"></div>
+      </div>
 
-        <div class="carousel-container">
-          <div class="carousel-wrapper">
-            <!-- Show only 3 items at a time with proper positioning -->
-            <div
-              v-for="n in 3"
-              :key="'visible-' + n"
-              class="carousel-item"
-              :class="getItemClass(n - 2)"
-              :style="getItemStyle(n - 2)"
-            >
-              <img :src="getCurrentMockup(n - 2).image" :alt="getCurrentMockup(n - 2).title" />
-              <div class="mockup-info">
-                <h3>{{ getCurrentMockup(n - 2).title }}</h3>
-                <p>{{ getCurrentMockup(n - 2).description }}</p>
-              </div>
+      <div class="carousel-container">
+        <div class="carousel-wrapper">
+          <div
+            v-for="n in 3"
+            :key="'visible-' + n"
+            class="carousel-item"
+            :class="getItemClass(n - 2)"
+            :style="getItemStyle(n - 2)"
+          >
+            <img :src="getCurrentMockup(n - 2).image" :alt="getCurrentMockup(n - 2).title" />
+            <div class="mockup-info">
+              <h3>{{ getCurrentMockup(n - 2).title }}</h3>
+              <p>{{ getCurrentMockup(n - 2).description }}</p>
             </div>
           </div>
-
-          <div class="carousel-indicators">
-            <button
-              v-for="(mockup, index) in mockups"
-              :key="'indicator-' + index"
-              class="indicator"
-              :class="{ active: index === currentIndex }"
-              @click="goToSlide(index)"
-            ></button>
-          </div>
-
-          <button class="nav-btn prev" @click="prevSlide">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="15,18 9,12 15,6"></polyline>
-            </svg>
-          </button>
-
-          <button class="nav-btn next" @click="nextSlide">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="9,18 15,12 9,6"></polyline>
-            </svg>
-          </button>
         </div>
 
-        <!-- Decorative circles section divider -->
-        <div class="section-divider">
-          <div class="circle circle-1"></div>
-          <div class="circle circle-2"></div>
-          <div class="circle circle-3"></div>
-          <div class="circle circle-4"></div>
+        <div class="carousel-indicators">
+          <button
+            v-for="(mockup, index) in mockups"
+            :key="'indicator-' + index"
+            class="indicator"
+            :class="{ active: index === currentIndex }"
+            @click="goToSlide(index)"
+          ></button>
         </div>
+
+        <button class="nav-btn prev" @click="prevSlide">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15,18 9,12 15,6"></polyline>
+          </svg>
+        </button>
+
+        <button class="nav-btn next" @click="nextSlide">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9,18 15,12 9,6"></polyline>
+          </svg>
+        </button>
       </div>
+
+      <div class="section-divider">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-3"></div>
+        <div class="circle circle-4"></div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: "DemoSection",
-  components: {},
   data() {
     return {
       currentIndex: 0,
       autoPlayInterval: null,
+      // 👇 imágenes en /public
       mockups: [
-        {
-          title: "Inicio",
-          description: "Pantalla de bienvenida",
-          image: "/LandingPage-GigMap-V1/mockup-inicio.png"
-        },
-        {
-          title: "Iniciar Sesión",
-          description: "Acceso a tu cuenta",
-          image: "/LandingPage-GigMap-V1/mockup-login.png"
-        },
-        {
-          title: "Registro",
-          description: "Crear nueva cuenta",
-          image: "/LandingPage-GigMap-V1/mockup-registro.png"
-        },
-        {
-          title: "Home",
-          description: "Comunidades y conciertos cercanos",
-          image: "/LandingPage-GigMap-V1/mockup-home.png"
-        },
-        {
-          title: "Descubrir Conciertos",
-          description: "Explora eventos disponibles",
-          image: "/LandingPage-GigMap-V1/mockup-descubrir.png"
-        },
-        {
-          title: "Filtros",
-          description: "Busca por género, fecha y ubicación",
-          image: "/LandingPage-GigMap-V1/mockup-filtros.png"
-        },
-        {
-          title: "Mapa Interactivo",
-          description: "Localiza eventos en tiempo real",
-          image: "/LandingPage-GigMap-V1/mockup-mapa.png"
-        },
-        {
-          title: "Comunidades",
-          description: "Únete a grupos musicales",
-          image: "/LandingPage-GigMap-V1/mockup-comunidades.png"
-        },
-        {
-          title: "Comunidad Específica",
-          description: "Vista detallada de una comunidad",
-          image: "/LandingPage-GigMap-V1/mockup-comunidad.png"
-        },
-        {
-          title: "Perfil",
-          description: "Tu información personal",
-          image: "/LandingPage-GigMap-V1/mockup-perfil.png"
-        },
-        {
-          title: "Editar Perfil",
-          description: "Modifica tu información personal",
-          image: "/LandingPage-GigMap-V1/mockup-edit.png"
-        }
+        { title: "Inicio",               description: "Pantalla de bienvenida",                   image: "/mockup-inicio.png" },
+        { title: "Iniciar Sesión",       description: "Acceso a tu cuenta",                       image: "/mockup-login.png" },
+        { title: "Registro",             description: "Crear nueva cuenta",                       image: "/mockup-registro.png" },
+        { title: "Home",                 description: "Comunidades y conciertos cercanos",        image: "/mockup-home.png" },
+        { title: "Descubrir Conciertos", description: "Explora eventos disponibles",              image: "/mockup-descubrir.png" },
+        { title: "Filtros",              description: "Busca por género, fecha y ubicación",      image: "/mockup-filtros.png" },
+        { title: "Mapa Interactivo",     description: "Localiza eventos en tiempo real",          image: "/mockup-mapa.png" },
+        { title: "Comunidades",          description: "Únete a grupos musicales",                 image: "/mockup-comunidades.png" },
+        { title: "Comunidad Específica", description: "Vista detallada de una comunidad",         image: "/mockup-comunidad.png" },
+        { title: "Perfil",               description: "Tu información personal",                  image: "/mockup-perfil.png" },
+        { title: "Editar Perfil",        description: "Modifica tu información personal",         image: "/mockup-edit.png" }
       ]
     };
   },
-  mounted() {
-    this.startAutoPlay();
-  },
-  beforeUnmount() {
-    this.stopAutoPlay();
-  },
+  mounted() { this.startAutoPlay(); },
+  beforeUnmount() { this.stopAutoPlay(); },
   methods: {
-    startAutoPlay() {
-      this.autoPlayInterval = setInterval(() => {
-        this.nextSlide();
-      }, 4000);
-    },
-    stopAutoPlay() {
-      if (this.autoPlayInterval) {
-        clearInterval(this.autoPlayInterval);
-        this.autoPlayInterval = null;
-      }
-    },
-    getCurrentMockup(offset) {
-      const total = this.mockups.length;
-      const index = (this.currentIndex + offset + total) % total;
-      return this.mockups[index];
-    },
-    getItemClass(offset) {
-      if (offset === 0) return 'center';
-      return offset < 0 ? 'left' : 'right';
-    },
+    startAutoPlay() { this.autoPlayInterval = setInterval(this.nextSlide, 4000); },
+    stopAutoPlay() { if (this.autoPlayInterval) { clearInterval(this.autoPlayInterval); this.autoPlayInterval = null; } },
+    getCurrentMockup(offset) { const t = this.mockups.length; const i = (this.currentIndex + offset + t) % t; return this.mockups[i]; },
+    getItemClass(offset) { return offset === 0 ? 'center' : (offset < 0 ? 'left' : 'right'); },
     getItemStyle(offset) {
-      let scale = 0.85;
-      let opacity = 0.6;
-      let zIndex = 1;
-      let blur = 'blur(2px)';
-      let brightness = 'brightness(0.7)';
-
-      if (offset === 0) {
-        scale = 1;
-        opacity = 1;
-        zIndex = 3;
-        blur = 'blur(0px)';
-        brightness = 'brightness(1)';
-      } else if (Math.abs(offset) === 1) {
-        scale = 0.95;
-        opacity = 0.8;
-        zIndex = 2;
-        blur = 'blur(1px)';
-        brightness = 'brightness(0.85)';
-      }
-
-      return {
-        transform: `scale(${scale})`,
-        opacity: opacity,
-        zIndex: zIndex,
-        filter: `${blur} ${brightness}`,
-        transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)'
-      };
+      let scale = 0.85, opacity = 0.6, zIndex = 1, blur = 'blur(2px)', brightness = 'brightness(0.7)';
+      if (offset === 0) { scale = 1; opacity = 1; zIndex = 3; blur = 'blur(0px)'; brightness = 'brightness(1)'; }
+      else if (Math.abs(offset) === 1) { scale = 0.95; opacity = 0.8; zIndex = 2; blur = 'blur(1px)'; brightness = 'brightness(0.85)'; }
+      return { transform: `scale(${scale})`, opacity, zIndex, filter: `${blur} ${brightness}`, transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)' };
     },
-    nextSlide() {
-      this.currentIndex = (this.currentIndex + 1) % this.mockups.length;
-    },
-    prevSlide() {
-      this.currentIndex = this.currentIndex === 0 ? this.mockups.length - 1 : this.currentIndex - 1;
-    },
-    goToSlide(index) {
-      this.currentIndex = index;
-    }
+    nextSlide() { this.currentIndex = (this.currentIndex + 1) % this.mockups.length; },
+    prevSlide() { this.currentIndex = this.currentIndex === 0 ? this.mockups.length - 1 : this.currentIndex - 1; },
+    goToSlide(index) { this.currentIndex = index; }
   }
 }
 </script>
