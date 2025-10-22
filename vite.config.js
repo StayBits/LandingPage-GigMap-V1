@@ -3,7 +3,7 @@ import vue from '@vitejs/plugin-vue'
 import { fileURLToPath, URL } from 'node:url'
 
 export default defineConfig({
-  base: '/LandingPage-GigMap-V1/' 
+  base: '/LandingPage-GigMap-V1/',
   plugins: [vue()],
   resolve: {
     alias: {
