@@ -71,22 +71,28 @@ export default {
       currentIndex: 0,
       autoPlayInterval: null,
       // 👇 imágenes en /public
-     mockups: [
-  { title: "Inicio", description: "Pantalla de bienvenida", image: `${import.meta.env.BASE_URL}mockup-inicio.png` },
-  { title: "Iniciar Sesión", description: "Acceso a tu cuenta", image: `${import.meta.env.BASE_URL}mockup-login.png` },
-  { title: "Registro", description: "Crear nueva cuenta", image: `${import.meta.env.BASE_URL}mockup-registro.png` },
-  { title: "Home", description: "Comunidades y conciertos cercanos", image: `${import.meta.env.BASE_URL}mockup-home.png` },
-  { title: "Descubrir Conciertos", description: "Explora eventos disponibles", image: `${import.meta.env.BASE_URL}mockup-descubrir.png` },
-  { title: "Filtros", description: "Busca por género, fecha y ubicación", image: `${import.meta.env.BASE_URL}mockup-filtros.png` },
-  { title: "Mapa Interactivo", description: "Localiza eventos en tiempo real", image: `${import.meta.env.BASE_URL}mockup-mapa.png` },
-  { title: "Comunidades", description: "Únete a grupos musicales", image: `${import.meta.env.BASE_URL}mockup-comunidades.png` },
-  { title: "Comunidad Específica", description: "Vista detallada de una comunidad", image: `${import.meta.env.BASE_URL}mockup-comunidad.png` },
-  { title: "Perfil", description: "Tu información personal", image: `${import.meta.env.BASE_URL}mockup-perfil.png` },
-  { title: "Editar Perfil", description: "Modifica tu información personal", image: `${import.meta.env.BASE_URL}mockup-edit.png` }
-]
+  data() {
+  const BASE = (import.meta.env.BASE_URL || '/'); // p.ej. '/LandingPage-GigMap-V1/'
 
-    };
-  },
+  return {
+    currentIndex: 0,
+    autoPlayInterval: null,
+    mockups: [
+      { title: "Inicio",               description: "Pantalla de bienvenida",              image: `${BASE}mockup-inicio.png` },
+      { title: "Iniciar Sesión",       description: "Acceso a tu cuenta",                  image: `${BASE}mockup-login.png` },
+      { title: "Registro",             description: "Crear nueva cuenta",                  image: `${BASE}mockup-registro.png` },
+      { title: "Home",                 description: "Comunidades y conciertos cercanos",   image: `${BASE}mockup-home.png` },
+      { title: "Descubrir Conciertos", description: "Explora eventos disponibles",         image: `${BASE}mockup-descubrir.png` },
+      { title: "Filtros",              description: "Busca por género, fecha y ubicación", image: `${BASE}mockup-filtros.png` },
+      { title: "Mapa Interactivo",     description: "Localiza eventos en tiempo real",     image: `${BASE}mockup-mapa.png` },
+      { title: "Comunidades",          description: "Únete a grupos musicales",            image: `${BASE}mockup-comunidades.png` },
+      { title: "Comunidad Específica", description: "Vista detallada de una comunidad",    image: `${BASE}mockup-comunidad.png` },
+      { title: "Perfil",               description: "Tu información personal",             image: `${BASE}mockup-perfil.png` },
+      { title: "Editar Perfil",        description: "Modifica tu información personal",    image: `${BASE}mockup-edit.png` }
+    ]
+  };
+},
+
   mounted() { this.startAutoPlay(); },
   beforeUnmount() { this.stopAutoPlay(); },
   methods: {
