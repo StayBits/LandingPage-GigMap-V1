@@ -6,6 +6,7 @@
         <p>{{ $t('demoSubtitle') }}</p>
       </div>
 
+      <!-- Divider decorativo -->
       <div class="section-divider">
         <div class="circle circle-1"></div>
         <div class="circle circle-2"></div>
@@ -15,6 +16,7 @@
 
       <div class="carousel-container">
         <div class="carousel-wrapper">
+          <!-- 3 items visibles -->
           <div
             v-for="n in 3"
             :key="'visible-' + n"
@@ -53,6 +55,7 @@
         </button>
       </div>
 
+      <!-- Divider decorativo -->
       <div class="section-divider">
         <div class="circle circle-1"></div>
         <div class="circle circle-2"></div>
@@ -64,35 +67,31 @@
 </template>
 
 <script>
+// 👇 BASE fuera del export para evitar problemas en build
+const BASE = import.meta.env.BASE_URL || '/'; // ej. '/LandingPage-GigMap-V1/'
+
 export default {
   name: "DemoSection",
   data() {
     return {
       currentIndex: 0,
       autoPlayInterval: null,
-      // 👇 imágenes en /public
-  data() {
-  const BASE = (import.meta.env.BASE_URL || '/'); // p.ej. '/LandingPage-GigMap-V1/'
-
-  return {
-    currentIndex: 0,
-    autoPlayInterval: null,
-    mockups: [
-      { title: "Inicio",               description: "Pantalla de bienvenida",              image: `${BASE}mockup-inicio.png` },
-      { title: "Iniciar Sesión",       description: "Acceso a tu cuenta",                  image: `${BASE}mockup-login.png` },
-      { title: "Registro",             description: "Crear nueva cuenta",                  image: `${BASE}mockup-registro.png` },
-      { title: "Home",                 description: "Comunidades y conciertos cercanos",   image: `${BASE}mockup-home.png` },
-      { title: "Descubrir Conciertos", description: "Explora eventos disponibles",         image: `${BASE}mockup-descubrir.png` },
-      { title: "Filtros",              description: "Busca por género, fecha y ubicación", image: `${BASE}mockup-filtros.png` },
-      { title: "Mapa Interactivo",     description: "Localiza eventos en tiempo real",     image: `${BASE}mockup-mapa.png` },
-      { title: "Comunidades",          description: "Únete a grupos musicales",            image: `${BASE}mockup-comunidades.png` },
-      { title: "Comunidad Específica", description: "Vista detallada de una comunidad",    image: `${BASE}mockup-comunidad.png` },
-      { title: "Perfil",               description: "Tu información personal",             image: `${BASE}mockup-perfil.png` },
-      { title: "Editar Perfil",        description: "Modifica tu información personal",    image: `${BASE}mockup-edit.png` }
-    ]
-  };
-},
-
+      // Imágenes servidas desde /public
+      mockups: [
+        { title: "Inicio",               description: "Pantalla de bienvenida",              image: `${BASE}mockup-inicio.png` },
+        { title: "Iniciar Sesión",       description: "Acceso a tu cuenta",                  image: `${BASE}mockup-login.png` },
+        { title: "Registro",             description: "Crear nueva cuenta",                  image: `${BASE}mockup-registro.png` },
+        { title: "Home",                 description: "Comunidades y conciertos cercanos",   image: `${BASE}mockup-home.png` },
+        { title: "Descubrir Conciertos", description: "Explora eventos disponibles",         image: `${BASE}mockup-descubrir.png` },
+        { title: "Filtros",              description: "Busca por género, fecha y ubicación", image: `${BASE}mockup-filtros.png` },
+        { title: "Mapa Interactivo",     description: "Localiza eventos en tiempo real",     image: `${BASE}mockup-mapa.png` },
+        { title: "Comunidades",          description: "Únete a grupos musicales",            image: `${BASE}mockup-comunidades.png` },
+        { title: "Comunidad Específica", description: "Vista detallada de una comunidad",    image: `${BASE}mockup-comunidad.png` },
+        { title: "Perfil",               description: "Tu información personal",             image: `${BASE}mockup-perfil.png` },
+        { title: "Editar Perfil",        description: "Modifica tu información personal",    image: `${BASE}mockup-edit.png` }
+      ]
+    };
+  },
   mounted() { this.startAutoPlay(); },
   beforeUnmount() { this.stopAutoPlay(); },
   methods: {
@@ -104,7 +103,7 @@ export default {
       let scale = 0.85, opacity = 0.6, zIndex = 1, blur = 'blur(2px)', brightness = 'brightness(0.7)';
       if (offset === 0) { scale = 1; opacity = 1; zIndex = 3; blur = 'blur(0px)'; brightness = 'brightness(1)'; }
       else if (Math.abs(offset) === 1) { scale = 0.95; opacity = 0.8; zIndex = 2; blur = 'blur(1px)'; brightness = 'brightness(0.85)'; }
-      return { transform: `scale(${scale})`, opacity, zIndex, filter: `${blur} ${brightness}`, transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)' };
+      return { transform: `scale(${scale})`, opacity, zIndex, filter: `${blur} ${brightness}`, transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)` };
     },
     nextSlide() { this.currentIndex = (this.currentIndex + 1) % this.mockups.length; },
     prevSlide() { this.currentIndex = this.currentIndex === 0 ? this.mockups.length - 1 : this.currentIndex - 1; },
@@ -121,246 +120,71 @@ export default {
   color: #fff;
 }
 
-.demo-container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
+.demo-container { max-width: 1200px; margin: 0 auto; }
 
-.demo-header {
-  text-align: center;
-  margin-bottom: 3rem;
-}
+.demo-header { text-align: center; margin-bottom: 3rem; }
 
 .demo-header h1 {
-  font-size: 3rem;
-  font-weight: 800;
-  margin-bottom: 1rem;
-  background: #8c1c25;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-size: 3rem; font-weight: 800; margin-bottom: 1rem;
+  background: #8c1c25; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
 
-.demo-header p {
-  font-size: 1.2rem;
-  color: #ccc;
-  max-width: 600px;
-  margin: 0 auto;
-}
+.demo-header p { font-size: 1.2rem; color: #ccc; max-width: 600px; margin: 0 auto; }
 
-/* Decorative circles with new colors */
-.section-divider {
-  position: relative;
-  height: 120px;
-  overflow: hidden;
-}
+/* Divider decorativo */
+.section-divider { position: relative; height: 120px; overflow: hidden; }
+.section-divider .circle { position: absolute; border-radius: 50%; opacity: 0.5; animation: float-gently 6s ease-in-out infinite; }
 
-.section-divider .circle {
-  position: absolute;
-  border-radius: 50%;
-  opacity: 0.5;
-  animation: float-gently 6s ease-in-out infinite;
-}
+.section-divider .circle-1 { background-color: #590e0e; width: 80px; height: 80px; left: 15%; top: 20px; animation-delay: 0s; }
+.section-divider .circle-2 { background-color: #8c1c25; width: 50px; height: 50px; left: 35%; top: 50px; animation-delay: 1.5s; }
+.section-divider .circle-3 { background-color: rgba(255,255,255,.3); width: 60px; height: 60px; right: 35%; top: 15px; animation: float-sideways 5s ease-in-out infinite; animation-delay: 3s; }
+.section-divider .circle-4 { background-color: #590e0e; width: 90px; height: 90px; right: 12%; top: 35px; animation-delay: 4.5s; }
 
-.section-divider .circle-1 {
-  background-color: #590e0e;
-  width: 80px;
-  height: 80px;
-  left: 15%;
-  top: 20px;
-  animation-delay: 0s;
-}
+.carousel-container { position: relative; max-width: 1200px; margin: 0 auto; overflow: hidden; }
+.carousel-wrapper { display: flex; justify-content: center; align-items: center; gap: 2rem; min-height: 700px; }
 
-.section-divider .circle-2 {
-  background-color: #8c1c25;
-  width: 50px;
-  height: 50px;
-  left: 35%;
-  top: 50px;
-  animation-delay: 1.5s;
-}
-
-.section-divider .circle-3 {
-  background-color: rgba(255, 255, 255, 0.3);
-  width: 60px;
-  height: 60px;
-  right: 35%;
-  top: 15px;
-  animation-delay: 3s;
-  animation: float-sideways 5s ease-in-out infinite;
-}
-
-.section-divider .circle-4 {
-  background-color: #590e0e;
-  width: 90px;
-  height: 90px;
-  right: 12%;
-  top: 35px;
-  animation-delay: 4.5s;
-}
-
-.carousel-container {
-  position: relative;
-  max-width: 1200px;
-  margin: 0 auto;
-  overflow: hidden;
-}
-
-.carousel-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;
-  min-height: 700px;
-}
-
-.carousel-item {
-  flex: 0 0 280px;
-  transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  position: relative;
-  cursor: pointer;
-}
-
-.carousel-item.center {
-  flex: 0 0 320px;
-}
+.carousel-item { flex: 0 0 280px; transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); position: relative; cursor: pointer; }
+.carousel-item.center { flex: 0 0 320px; }
 
 .carousel-item img {
-  width: 100%;
-  height: 650px;
-  object-fit: contain;
-  border-radius: 20px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-  transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  width: 100%; height: 650px; object-fit: contain; border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.5); transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
-
-.carousel-item.center img {
-  box-shadow: 0 30px 80px rgba(140, 28, 37, 0.4);
-}
-
-.carousel-item:hover img {
-  transform: translateY(-5px);
-}
+.carousel-item.center img { box-shadow: 0 30px 80px rgba(140,28,37,.4); }
+.carousel-item:hover img { transform: translateY(-5px); }
 
 .mockup-info {
-  position: absolute;
-  bottom: 2rem;
-  left: 2rem;
-  right: 2rem;
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(10px);
-  padding: 1.5rem;
-  border-radius: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: absolute; bottom: 2rem; left: 2rem; right: 2rem;
+  background: rgba(0,0,0,.8); backdrop-filter: blur(10px);
+  padding: 1.5rem; border-radius: 15px; border: 1px solid rgba(255,255,255,.1);
 }
+.mockup-info h3 { margin: 0 0 .5rem 0; font-size: 1.5rem; font-weight: 700; color: #fff; }
+.mockup-info p { margin: 0; color: #ccc; font-size: 1rem; line-height: 1.4; }
 
-.mockup-info h3 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #fff;
-}
-
-.mockup-info p {
-  margin: 0;
-  color: #ccc;
-  font-size: 1rem;
-  line-height: 1.4;
-}
-
-.carousel-indicators {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 3rem;
-}
-
-.indicator {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  background: transparent;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.indicator:hover {
-  background: rgba(255, 255, 255, 0.5);
-}
-
-.indicator.active {
-  background: #8c1c25;
-  border-color: #8c1c25;
-  box-shadow: 0 0 20px rgba(140, 28, 37, 0.6);
-}
+.carousel-indicators { display: flex; justify-content: center; gap: 12px; margin-top: 3rem; }
+.indicator { width: 12px; height: 12px; border-radius: 50%; border: 2px solid rgba(255,255,255,.3); background: transparent; cursor: pointer; transition: all .3s ease; }
+.indicator:hover { background: rgba(255,255,255,.5); }
+.indicator.active { background: #8c1c25; border-color: #8c1c25; box-shadow: 0 0 20px rgba(140,28,37,.6); }
 
 .nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(10px);
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  color: #fff;
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(0,0,0,.8); backdrop-filter: blur(10px);
+  border: 2px solid rgba(255,255,255,.1); border-radius: 50%;
+  width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all .3s ease; color: #fff;
 }
-
-.nav-btn:hover {
-  background: rgba(140, 28, 37, 0.8);
-  border-color: #8c1c25;
-  transform: translateY(-50%) scale(1.1);
-}
-
-.nav-btn.prev {
-  left: 2rem;
-}
-
-.nav-btn.next {
-  right: 2rem;
-}
-
-.nav-btn svg {
-  width: 24px;
-  height: 24px;
-}
+.nav-btn:hover { background: rgba(140,28,37,.8); border-color: #8c1c25; transform: translateY(-50%) scale(1.1); }
+.nav-btn.prev { left: 2rem; }
+.nav-btn.next { right: 2rem; }
+.nav-btn svg { width: 24px; height: 24px; }
 
 @media (max-width: 768px) {
-  .demo-header h1 {
-    font-size: 2rem;
-  }
-
-  .carousel-item {
-    flex: 0 0 220px;
-    margin: 0 8px;
-  }
-
-  .carousel-item.center {
-    flex: 0 0 260px;
-  }
-
-  .carousel-item img {
-    height: 500px;
-  }
-
-  .nav-btn {
-    width: 50px;
-    height: 50px;
-  }
-
-  .nav-btn.prev {
-    left: 1rem;
-  }
-
-  .nav-btn.next {
-    right: 1rem;
-  }
+  .demo-header h1 { font-size: 2rem; }
+  .carousel-item { flex: 0 0 220px; margin: 0 8px; }
+  .carousel-item.center { flex: 0 0 260px; }
+  .carousel-item img { height: 500px; }
+  .nav-btn { width: 50px; height: 50px; }
+  .nav-btn.prev { left: 1rem; }
+  .nav-btn.next { right: 1rem; }
 }
 </style>
