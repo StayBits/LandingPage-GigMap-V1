@@ -67,7 +67,7 @@
 </template>
 
 <script>
-// 👇 BASE fuera del export para evitar problemas en build
+// BASE fuera del export para evitar problemas en build
 const BASE = import.meta.env.BASE_URL || '/'; // ej. '/LandingPage-GigMap-V1/'
 
 export default {
@@ -97,19 +97,29 @@ export default {
   methods: {
     startAutoPlay() { this.autoPlayInterval = setInterval(this.nextSlide, 4000); },
     stopAutoPlay() { if (this.autoPlayInterval) { clearInterval(this.autoPlayInterval); this.autoPlayInterval = null; } },
-    getCurrentMockup(offset) { const t = this.mockups.length; const i = (this.currentIndex + offset + t) % t; return this.mockups[i]; },
-    getItemClass(offset) { return offset === 0 ? 'center' : (offset < 0 ? 'left' : 'right'); },
+    getCurrentMockup(offset) {
+      const total = this.mockups.length;
+      const index = (this.currentIndex + offset + total) % total;
+      return this.mockups[index];
+    },
+    getItemClass(offset) {
+      return offset === 0 ? 'center' : (offset < 0 ? 'left' : 'right');
+    },
     getItemStyle(offset) {
       let scale = 0.85, opacity = 0.6, zIndex = 1, blur = 'blur(2px)', brightness = 'brightness(0.7)';
-      if (offset === 0) { scale = 1; opacity = 1; zIndex = 3; blur = 'blur(0px)'; brightness = 'brightness(1)'; }
-      else if (Math.abs(offset) === 1) { scale = 0.95; opacity = 0.8; zIndex = 2; blur = 'blur(1px)'; brightness = 'brightness(0.85)'; }
-      return { transform: `scale(${scale})`, opacity, zIndex, filter: `${blur} ${brightness}`, transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)` };
+      if (offset === 0) {
+        scale = 1; opacity = 1; zIndex = 3; blur = 'blur(0px)'; brightness = 'brightness(1)';
+      } else if (Math.abs(offset) === 1) {
+        scale = 0.95; opacity = 0.8; zIndex = 2; blur = 'blur(1px)'; brightness = 'brightness(0.85)';
+      }
+      // 👇 ESTA LÍNEA ERA LA CAUSANTE: comillas corregidas
+      return { transform: `scale(${scale})`, opacity, zIndex, filter: `${blur} ${brightness}`, transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)" };
     },
     nextSlide() { this.currentIndex = (this.currentIndex + 1) % this.mockups.length; },
     prevSlide() { this.currentIndex = this.currentIndex === 0 ? this.mockups.length - 1 : this.currentIndex - 1; },
     goToSlide(index) { this.currentIndex = index; }
   }
-}
+};
 </script>
 
 <style scoped>
